@@ -1,0 +1,32 @@
+name: Create connection
+
+trigger:
+  type: api
+
+input:
+  type: 'object'
+  properties:
+    alias:
+      type: string
+    label:
+      type: string
+    imageUrl:
+      type: string
+    goal:
+      type: string
+    goalCode:
+      type: string
+  required:
+    - alias
+    - label
+    - imageUrl
+
+actions: 
+  - id: createConnection
+    name: didcomm/createConnection@v1
+    attributes:
+      alias: $.input.alias
+      label: $.input.label
+      imageUrl: $.input.imageUrl
+      goal: $.input.goal
+      goalCode: $.input.goalCode
