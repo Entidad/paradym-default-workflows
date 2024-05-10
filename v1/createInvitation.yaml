@@ -1,0 +1,36 @@
+name: Create oob invitation
+
+trigger:
+  type: api
+
+input:
+  type: 'object'
+  properties:
+    alias:
+      type: string
+    label:
+      type: string
+    imageUrl:
+      type: string
+    isReusable:
+      type: boolean
+    goal:
+      type: string
+    goalCode:
+      type: string
+  required:
+    - alias
+    - label
+    - imageUrl
+    - isReusable
+
+actions:
+  - id: createInvitation
+    name: didcomm/createInvitation@v1
+    attributes:
+      alias: $.input.alias
+      label: $.input.label
+      imageUrl: $.input.imageUrl
+      isReusable: $.input.isReusable
+      goal: $.input.goal
+      goalCode: $.input.goalCode
