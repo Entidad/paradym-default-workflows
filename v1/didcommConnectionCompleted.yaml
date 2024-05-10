@@ -1,0 +1,12 @@
+name: Connection completed
+
+# The trigger defines how your workflow can be executed
+trigger:
+  type: didcommConnectionCompleted
+
+# The input object is an optional JSONSchema that validates the input of your workflow
+input:
+  type: object
+
+# Actions are the steps that your workflow takes to reach its overall goal
+actions: []
