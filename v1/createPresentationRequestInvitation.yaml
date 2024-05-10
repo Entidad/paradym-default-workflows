@@ -1,0 +1,63 @@
+name: Request presentation with invitation
+
+trigger:
+  type: api
+
+input:
+  type: object
+  properties:
+    invitation:
+      title: Invitation
+      type: object
+      description: The invitation properties.
+      properties:
+        createConnection:
+          description: Whether to create a connection as part of the exchange. This allows to directly send messages to this connection in the future, without needing to create an out of band invitation first (see for example didcomm/requestPresentation).
+          type: boolean
+        alias:
+          description: Alias for the connection
+          type: string
+        label:
+          description: Label for the invitation. Will be shared with the other party.
+          type: string
+        imageUrl:
+          description: Image url to be included in the invitation.
+          type: string
+    anoncreds:
+      type: object
+      description: The Anoncreds presentation request.
+      properties:
+        name:
+          description: Credential name or label
+          type: string
+        version:
+          description: Credential version
+          type: string
+        attributes:
+          description: The requested attributes.
+          type: array
+          items:
+            type: object
+        predicates:
+          description: The requested predicates.
+          type: array
+          items:
+            type: object
+        requireNonRevoked:
+          description: Boolean indicator if the credential should be non-revoked.
+          type: boolean
+    comment:
+      description: An optional comment sent with the exchange to provide context. 
+      type: string
+  required:
+    - invitation
+    - anoncreds
+
+actions:
+  # Request proof presentation with verifiable claims and offer request with an invitation
+  - id: createPresentationRequestInvitation
+    name: didcomm/createPresentationRequestInvitation@v1
+    attributes:
+      invitation: $.input.invitation
+      anoncreds: $.input.anoncreds
+      comment: $.input.comment
