@@ -1,0 +1,29 @@
+name: Send basic message
+
+trigger:
+  type: api
+
+# Input object allows to dynamically pass the name, version and attributes of the schema
+input:
+  type: ''object''
+  properties:
+    connectionId:
+      type: string
+      description: Connection identifier to send the message to.
+    message:
+      type: string
+      description: The message to send. Must be string, but can contain special characters such as emojis.
+    parentThreadId:
+      type: string
+      description: The parent thread identifier of the message. If this value is set, it should refer to the threadId of another message that was sent to, or received from the associated connection.
+  required:
+    - connectionId
+    - message
+
+actions:
+  - id: sendMessage
+    name: didcomm/sendBasicMessage@v1
+    attributes:
+      connectionId: $.input.connectionId
+      message: $.input.message
+      parentThreadId: $.input.parentThreadId
