@@ -1,0 +1,65 @@
+name: Request presentation
+
+# Workflow is triggered by API Call from your client
+trigger:
+  type: api
+ 
+# The connection identifier from the user is used to send the presentation request
+input:
+  type: object
+  properties:
+    connectionId:
+      title: Connection Id
+      type: string
+    anoncreds:
+      type: object
+      properties:
+        name:
+          description: Credential name or label
+          type: string
+        version:
+          description: Credential version
+          type: string
+        attributes:
+          description: The requested attributes.
+          type: array
+          items:
+            type: object
+            properties:
+              names:
+                description: The names of the attributes in the credential that a presentation is being requested for. The name must be present in the schema associated with the credential definition.
+                type: array
+                items:
+                  type: string
+              restrictions:
+                description: The restrictions for the requested attribute.
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    credentialDefinitionId:
+                      description: The credential definition Id.
+                      type: string
+        predicates:
+          description: The requested predicates.
+          type: array
+          items:
+            type: object
+        requireNonRevoked:
+          description: Boolean indicator if the credential should be non-revoked.
+          type: boolean
+    comment:
+      description: An optional comment sent with the exchange to provide context. 
+      type: string
+  required:
+    - connectionId
+    - anoncreds
+ 
+actions:
+  # Request proof presentation with verifiable claims
+  - id: requestPresentation
+    name: didcomm/requestPresentation@v1
+    attributes:
+      connectionId: $.input.connectionId
+      anoncreds: $.input.anoncreds
+      comment: $.input.comment
