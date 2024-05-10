@@ -1,1 +1,9 @@
-
+name: Presentation verified
+ 
+trigger:
+  type: didcommPresentationVerified
+ 
+input:
+  type: object
+ 
+actions: []

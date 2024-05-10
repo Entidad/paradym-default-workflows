@@ -1,0 +1,9 @@
+name: Connection reused
+
+trigger:
+  type: didcommConnectionReused
+
+input:
+  type: object
+
+actions: []

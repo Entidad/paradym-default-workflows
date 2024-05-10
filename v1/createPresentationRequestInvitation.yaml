@@ -54,7 +54,6 @@ input:
     - anoncreds
 
 actions:
-  # Request proof presentation with verifiable claims and offer request with an invitation
   - id: createPresentationRequestInvitation
     name: didcomm/createPresentationRequestInvitation@v1
     attributes:

@@ -1,10 +1,8 @@
 name: Basic message received
  
-# Specify trigger type (in this case we react to didcommConnectionCompleted)
 trigger:
   type: didcommBasicMessageReceived
  
-# Define input as an object, without specifying specific fields.
 input:
   type: object
  

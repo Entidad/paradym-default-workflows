@@ -1,10 +1,8 @@
 name: Request presentation
 
-# Workflow is triggered by API Call from your client
 trigger:
   type: api
  
-# The connection identifier from the user is used to send the presentation request
 input:
   type: object
   properties:
@@ -56,7 +54,6 @@ input:
     - anoncreds
  
 actions:
-  # Request proof presentation with verifiable claims
   - id: requestPresentation
     name: didcomm/requestPresentation@v1
     attributes:

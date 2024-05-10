@@ -1,6 +1,8 @@
 name: Create connection
+
 trigger:
   type: api
+
 input:
   type: 'object'
   properties:
@@ -18,6 +20,7 @@ input:
     - alias
     - label
     - imageUrl
+
 actions: 
   - id: createConnection
     name: didcomm/createConnection@v1

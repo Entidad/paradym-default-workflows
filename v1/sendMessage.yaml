@@ -3,9 +3,8 @@ name: Send basic message
 trigger:
   type: api
 
-# Input object allows to dynamically pass the name, version and attributes of the schema
 input:
-  type: ''object''
+  type: 'object'
   properties:
     connectionId:
       type: string
