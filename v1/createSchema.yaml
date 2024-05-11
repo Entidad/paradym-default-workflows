@@ -1,32 +1,42 @@
-name: Create connection
+name: Create schema
 
+# Workflow can be triggered through the API (or manually through the UI)
 trigger:
   type: api
-
+ 
+# Input object allows to dynamically pass the name, version and attributes of the schema
 input:
   type: 'object'
   properties:
-    alias:
+    attributeNames:
+      type: array
+      items:
+        type: string
+    name:
       type: string
-    label:
+    version:
       type: string
-    imageUrl:
+      description: Must match x.x.x or x.x (e.g. 1.0 or 1.0.0)
+      default: '1.0'
+    network:
       type: string
-    goal:
-      type: string
-    goalCode:
-      type: string
+      default: 'did:web'
+      description: Mainnet is only available on the paid tiers.
+      enum:
+        - 'cheqd:testnet'
+        - 'cheqd:mainnet'
+        - 'did:web'
   required:
-    - alias
-    - label
-    - imageUrl
-
-actions: 
-  - id: createConnection
-    name: didcomm/createConnection@v1
+    - name
+    - version
+    - attributeNames
+    - network
+ 
+actions:
+  - id: createSchema
+    name: anoncreds/createSchema@v1
     attributes:
-      alias: $.input.alias
-      label: $.input.label
-      imageUrl: $.input.imageUrl
-      goal: $.input.goal
-      goalCode: $.input.goalCode
+      attributeNames: $.input.attributeNames
+      name: $.input.name
+      version: $.input.version
+      network: $.input.network
