@@ -18,6 +18,8 @@ input:
       type: string
     goalCode:
       type: string
+    invitationDid:
+      type: string
   required:
     - alias
     - label
@@ -34,3 +36,4 @@ actions:
       isReusable: $.input.isReusable
       goal: $.input.goal
       goalCode: $.input.goalCode
+      invitationDid: $.input.invitationDid
