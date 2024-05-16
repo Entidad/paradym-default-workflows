@@ -8,7 +8,7 @@ trigger:
 input:
   type: 'object'
   properties:
-    attributeNames:
+    attrNames:
       type: array
       items:
         type: string
@@ -23,20 +23,20 @@ input:
       default: 'did:web'
       description: Mainnet is only available on the paid tiers.
       enum:
+        - 'did:web'
         - 'cheqd:testnet'
         - 'cheqd:mainnet'
-        - 'did:web'
   required:
     - name
     - version
-    - attributeNames
+    - attrNames
     - network
  
 actions:
   - id: createSchema
     name: anoncreds/createSchema@v1
     attributes:
-      attributeNames: $.input.attributeNames
+      attributeNames: $.input.attrNames
       name: $.input.name
       version: $.input.version
       network: $.input.network
