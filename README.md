@@ -7,3 +7,6 @@ See [https://docs.paradym.id](https://docs.paradym.id) for more information.
 These default workflows can be used to kickstart your implementation of the Paradym workflows.
 
 For Mendix: use a REST GET call to retrieve the contents of the YAML files e.g. `https://raw.githubusercontent.com/Entidad/paradym-default-workflows/main/v1/createSchema.yaml`
+
+## Archived
+20241206: This repository has been archived since Paradym deprecated their Workflows functionality.
